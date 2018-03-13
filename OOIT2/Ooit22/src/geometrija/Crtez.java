@@ -9,6 +9,14 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import model.Krug;
+import model.Kvadrat;
+import model.Linija;
+import model.Oblik;
+import model.PovrsinskiOblik;
+import model.Pravougaonik;
+import model.Tacka;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
