@@ -18,11 +18,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class MainFrame {
+public class MainFrame extends JFrame {
 
-	private JFrame frmCrtanje;
+	private static MainFrame frmCrtanje;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private final ButtonGroup buttonGroup_1 = new ButtonGroup();
+	
 	public JToggleButton tglbtnTacka = new JToggleButton("TACKA");
 	public JToggleButton tglbtnLinija = new JToggleButton("LINIJA");
 	public JToggleButton tglbtnKrug = new JToggleButton("KRUG");
@@ -36,26 +37,12 @@ public class MainFrame {
 	public JButton btnPomeriNa = new JButton("POMERI NA");
 	
 	public String selectedColor;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MainFrame window = new MainFrame();
-					window.frmCrtanje.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+
 
 	/**
 	 * Create the application.
 	 */
-	public MainFrame() {
+	MainFrame() {
 		initialize();
 	}
 
@@ -63,7 +50,7 @@ public class MainFrame {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frmCrtanje = new JFrame();
+		frmCrtanje = this;
 		frmCrtanje.getContentPane().setBackground(Color.CYAN);
 		frmCrtanje.setTitle("CRTANJE");
 		frmCrtanje.setBounds(100, 100, 631, 379);
@@ -181,5 +168,16 @@ public class MainFrame {
 
 		btnPomeriZa.setBounds(398, 307, 102, 23);
 		frmCrtanje.getContentPane().add(btnPomeriZa);
+	}
+
+	/*
+	 * Singleton pattern
+	 */
+	public static MainFrame getFrmCrtanje() {
+		if (frmCrtanje == null)
+		{
+			frmCrtanje = new MainFrame();
+		}
+		return frmCrtanje;
 	}
 }
