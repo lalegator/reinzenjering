@@ -18,10 +18,10 @@ import java.awt.event.ActionEvent;
 public class Pomeri extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField textField;
-	private JTextField textField_1;
-	int korX = -1;
-	int korY = -1;
+	public JTextField textField;
+	public JTextField textField_1;
+	public int korX = -1;
+	public int korY = -1;
 
 	/**
 	 * Launch the application.

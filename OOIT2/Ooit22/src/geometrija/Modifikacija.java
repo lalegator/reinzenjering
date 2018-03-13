@@ -23,19 +23,19 @@ public class Modifikacija extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	public JTextField textField;
 	public JTextField textFieldVisina;
-	JLabel lblVisina = new JLabel("VISINA");
-	JLabel lblPoluprecnik = new JLabel("POLUPRECNIK ");
-	JLabel lblSirina = new JLabel("SIRINA");
-	JLabel lblStranica = new JLabel("STRANICA");
-	String[] boje = { "", "BELA", "CRNA", "ZELENA", "ZUTA", "PLAVA", "CRVENA" };
-	int stranica;
-	int visina;
-	String boja;
-	String bojaunutrasnjosti;
-	JComboBox comboBoxBoja = new JComboBox(boje);
-	JComboBox comboBoxBojaUnutrasnjosti = new JComboBox(boje);
-	JLabel lblBojaUnutrasnjosti = new JLabel("BOJA UNUTRASNJOSTI");
-	JLabel lblBoja = new JLabel("BOJA");
+	public JLabel lblVisina = new JLabel("VISINA");
+	public JLabel lblPoluprecnik = new JLabel("POLUPRECNIK ");
+	public JLabel lblSirina = new JLabel("SIRINA");
+	public JLabel lblStranica = new JLabel("STRANICA");
+	public String[] boje = { "", "BELA", "CRNA", "ZELENA", "ZUTA", "PLAVA", "CRVENA" };
+	public int stranica;
+	public int visina;
+	public String boja;
+	public String bojaunutrasnjosti;
+	public JComboBox comboBoxBoja = new JComboBox(boje);
+	public JComboBox comboBoxBojaUnutrasnjosti = new JComboBox(boje);
+	public JLabel lblBojaUnutrasnjosti = new JLabel("BOJA UNUTRASNJOSTI");
+	public JLabel lblBoja = new JLabel("BOJA");
 
 	/**
 	 * Launch the application.

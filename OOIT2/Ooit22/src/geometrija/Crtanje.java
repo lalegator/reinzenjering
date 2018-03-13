@@ -6,8 +6,13 @@ import javax.swing.JFrame;
 import javax.swing.JToggleButton;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+
 import java.awt.Color;
+
 import javax.swing.ButtonGroup;
+
+import view.View;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
@@ -19,17 +24,17 @@ public class Crtanje {
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private final ButtonGroup buttonGroup_1 = new ButtonGroup();
 	public String boja;
-	JToggleButton tglbtnTacka = new JToggleButton("TACKA");
-	JToggleButton tglbtnLinija = new JToggleButton("LINIJA");
-	JToggleButton tglbtnKrug = new JToggleButton("KRUG");
-	JToggleButton tglbtnKvadrat = new JToggleButton("KVADRAT");
-	JToggleButton tglbtnPravougaonik = new JToggleButton("PRAVOUGAONIK");
-	JToggleButton tglbtnSelektuj = new JToggleButton("SELEKTUJ");
-	JButton btnObrisi = new JButton("OBRISI");
-	JToggleButton tglbtnPopuni = new JToggleButton("POPUNI");
-	JButton btnModifikacija = new JButton("MODIFIKACIJA");
-	JButton btnPomeriZa = new JButton("POMERI ZA");
-	JButton btnPomeriNa = new JButton("POMERI NA");
+	public JToggleButton tglbtnTacka = new JToggleButton("TACKA");
+	public JToggleButton tglbtnLinija = new JToggleButton("LINIJA");
+	public JToggleButton tglbtnKrug = new JToggleButton("KRUG");
+	public JToggleButton tglbtnKvadrat = new JToggleButton("KVADRAT");
+	public JToggleButton tglbtnPravougaonik = new JToggleButton("PRAVOUGAONIK");
+	public JToggleButton tglbtnSelektuj = new JToggleButton("SELEKTUJ");
+	public JButton btnObrisi = new JButton("OBRISI");
+	public JToggleButton tglbtnPopuni = new JToggleButton("POPUNI");
+	public JButton btnModifikacija = new JButton("MODIFIKACIJA");
+	public JButton btnPomeriZa = new JButton("POMERI ZA");
+	public JButton btnPomeriNa = new JButton("POMERI NA");
 
 	/**
 	 * Launch the application.
@@ -161,7 +166,7 @@ public class Crtanje {
 		btnModifikacija.setBounds(191, 307, 121, 23);
 		frmCrtanje.getContentPane().add(btnModifikacija);
 
-		Crtez panel = new Crtez(this);
+		View panel = new View(this);
 		panel.setBackground(Color.PINK);
 		panel.setBounds(112, 83, 493, 199);
 		frmCrtanje.getContentPane().add(panel);

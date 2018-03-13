@@ -52,19 +52,17 @@ public class Kvadrat extends PovrsinskiOblik implements Comparable {
 	public void selektovan(Graphics g) {
 		new Linija(goreLevo, new Tacka(goreLevo.getX() + stranica,
 				goreLevo.getY())).selektovan(g);
-		;
+		
 		new Linija(goreLevo, new Tacka(goreLevo.getX(), goreLevo.getY()
 				+ stranica)).selektovan(g);
-		;
+		
 		new Linija(new Tacka(goreLevo.getX(), goreLevo.getY() + stranica),
 				new Tacka(goreLevo.getX() + stranica, goreLevo.getY()
 						+ stranica)).selektovan(g);
-		;
+		
 		new Linija(new Tacka(goreLevo.getX() + stranica, goreLevo.getY()
 				+ stranica), new Tacka(goreLevo.getX() + stranica,
 				goreLevo.getY())).selektovan(g);
-		;
-
 	}
 
 	public int compareTo(Object obj) {
