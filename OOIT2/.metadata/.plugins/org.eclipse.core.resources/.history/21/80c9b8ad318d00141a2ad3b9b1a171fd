@@ -1,0 +1,116 @@
+package geometrija;
+
+import java.awt.EventQueue;
+
+import javax.swing.DefaultListModel;
+import javax.swing.JFrame;
+import javax.swing.JList;
+import javax.swing.JPanel;
+
+import java.awt.Color;
+
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class Stack {
+
+	private JFrame frmStack;
+	private JTextField textField;
+	private JTextField textField_1;
+	private JTextField textField_2;
+	private JTextField textField_3;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Stack window = new Stack();
+					window.frmStack.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public Stack() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	
+	private void initialize() {
+		DefaultListModel dlm = new DefaultListModel();
+		frmStack = new JFrame();
+		frmStack.setTitle("Stack");
+		frmStack.setBounds(100, 100, 450, 300);
+		frmStack.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmStack.getContentPane().setLayout(null);
+		
+		JLabel lblXpocetne = new JLabel("X pocetne");
+		lblXpocetne.setBounds(10, 11, 72, 14);
+		frmStack.getContentPane().add(lblXpocetne);
+		
+		textField = new JTextField();
+		textField.setBounds(103, 8, 86, 20);
+		frmStack.getContentPane().add(textField);
+		textField.setColumns(10);
+		
+		JLabel lblYpocetne = new JLabel("Y pocetne");
+		lblYpocetne.setBounds(10, 48, 60, 14);
+		frmStack.getContentPane().add(lblYpocetne);
+		
+		textField_1 = new JTextField();
+		textField_1.setBounds(103, 45, 86, 20);
+		frmStack.getContentPane().add(textField_1);
+		textField_1.setColumns(10);
+		
+		JLabel lblXkrajnje = new JLabel("X krajnje");
+		lblXkrajnje.setBounds(10, 110, 72, 14);
+		frmStack.getContentPane().add(lblXkrajnje);
+		
+		textField_2 = new JTextField();
+		textField_2.setBounds(103, 107, 86, 20);
+		frmStack.getContentPane().add(textField_2);
+		textField_2.setColumns(10);
+		
+		JLabel lblYkrajnje = new JLabel("Y krajnje");
+		lblYkrajnje.setBounds(10, 151, 60, 14);
+		frmStack.getContentPane().add(lblYkrajnje);
+		
+		textField_3 = new JTextField();
+		textField_3.setBounds(103, 148, 86, 20);
+		frmStack.getContentPane().add(textField_3);
+		textField_3.setColumns(10);
+		
+		JButton btnStavi = new JButton("STAVI");
+		btnStavi.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		btnStavi.setBounds(10, 215, 89, 23);
+		frmStack.getContentPane().add(btnStavi);
+		
+		JButton btnsSkini = new JButton("SKINI");
+		btnsSkini.setBounds(125, 215, 89, 23);
+		frmStack.getContentPane().add(btnsSkini);
+		
+		JList list = new JList();
+		list.setBackground(Color.PINK);
+		list.setBounds(261, 47, 115, 149);
+		frmStack.getContentPane().add(list);
+		list.setModel(dlm);
+	}
+}

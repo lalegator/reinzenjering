@@ -1,0 +1,104 @@
+package rekapitulacija;
+
+import javax.swing.JFrame;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class Calculator extends JFrame {
+	private JTextField textField;
+	double broj;
+	int opereacija;
+	double ulaz;
+	
+	public Calculator() {
+		setTitle("Calculator");
+		getContentPane().setLayout(null);
+		
+		textField = new JTextField();
+		textField.setBounds(32, 11, 350, 31);
+		getContentPane().add(textField);
+		textField.setColumns(10);
+		
+		JButton btn1 = new JButton("1");
+		btn1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				textField.setText("1");
+				broj = 1;
+			}
+		});
+		btn1.setBounds(24, 53, 89, 23);
+		getContentPane().add(btn1);
+		
+		JButton btn2 = new JButton("2");
+		btn2.setBounds(142, 53, 89, 23);
+		getContentPane().add(btn2);
+		
+		JButton btn3 = new JButton("3");
+		btn3.setBounds(261, 53, 89, 23);
+		getContentPane().add(btn3);
+		
+		JButton btnPlus = new JButton("+");
+		btnPlus.setBounds(402, 53, 89, 23);
+		getContentPane().add(btnPlus);
+		
+		JButton btn4 = new JButton("4");
+		btn4.setBounds(24, 100, 89, 23);
+		getContentPane().add(btn4);
+		
+		JButton btn5 = new JButton("5");
+		btn5.setBounds(142, 100, 89, 23);
+		getContentPane().add(btn5);
+		
+		JButton btn6 = new JButton("6");
+		btn6.setBounds(261, 100, 89, 23);
+		getContentPane().add(btn6);
+		
+		JButton btn7 = new JButton("7");
+		btn7.setBounds(24, 149, 89, 23);
+		getContentPane().add(btn7);
+		
+		JButton btn8 = new JButton("8");
+		btn8.setBounds(142, 149, 89, 23);
+		getContentPane().add(btn8);
+		
+		JButton btn9 = new JButton("9");
+		btn9.setBounds(261, 149, 89, 23);
+		getContentPane().add(btn9);
+		
+		JButton btn10 = new JButton("-");
+		btn10.setBounds(402, 100, 89, 23);
+		getContentPane().add(btn10);
+		
+		JButton btn11 = new JButton("*");
+		btn11.setBounds(402, 149, 89, 23);
+		getContentPane().add(btn11);
+		
+		JButton btn12 = new JButton("c");
+		btn12.setBounds(24, 201, 89, 23);
+		getContentPane().add(btn12);
+		
+		JButton btn13 = new JButton("0");
+		btn13.setBounds(142, 201, 89, 23);
+		getContentPane().add(btn13);
+		
+		JButton btn14 = new JButton("=");
+		btn14.setBounds(261, 201, 89, 23);
+		getContentPane().add(btn14);
+		
+		JButton btn15 = new JButton("/");
+		btn15.setBounds(402, 201, 89, 23);
+		getContentPane().add(btn15);
+	}
+
+	public static void main(String[] args) {
+		Calculator c = new Calculator();
+		c.setVisible(true);
+		c.setSize(500, 350);
+		c.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//c.setTitle("Calculator");
+		c.setResizable(false);
+
+	}
+}

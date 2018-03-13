@@ -1,0 +1,109 @@
+package geometrija;
+
+import java.awt.Graphics;
+import java.util.ArrayList;
+import java.util.Iterator;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+public class Crtez extends JPanel {
+	ArrayList oblici = new ArrayList();
+	public Crtez() {
+		addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int x = e.getX();
+				int y = e.getY();
+				Tacka t = new Tacka (x, y);
+				oblici.add(t);
+			}
+		});
+
+	}
+
+	public void paint(Graphics g) {
+		super.paint(g);
+		
+		Iterator it = oblici.iterator();
+		while (it.hasNext()) {
+			Oblik o = (Oblik)it.next();
+			o.crtajSe(g);
+		}
+		repaint ();
+		this.grabFocus();
+		/*Tacka t1 = new Tacka(50, 100, "plava");
+		t1.crtajSe(g);
+		Tacka t2 = new Tacka(200, 400, "plava");
+		Linija l1 = new Linija(t1, t2, "crvena");
+		l1.crtajSe(g);
+		Kvadrat kv1 = new Kvadrat(t2, 300, "zelena");
+		kv1.crtajSe(g);
+		kv1.centralnaTacka().crtajSe(g);
+		Krug k1 = new Krug (100,kv1.centralnaTacka(), "plava");
+		k1.crtajSe(g);
+		Kvadrat kv2 = new Kvadrat(new Tacka(500, 150),(int) l1.duzina()/3 ,t1.getBoja());
+		kv2.crtajSe(g);
+		kv2.centralnaTacka().crtajSe(g);
+		kv2.dijagonalaKvadrata().crtajSe(g);
+		Krug k2 = new Krug((int) kv2.dijagonalaKvadrata().duzina()/2, kv2.centralnaTacka(), "zuta");
+		k2.crtajSe(g);
+		Krug k3 = new Krug((int) kv2.getStranica()/2, kv2.centralnaTacka(), "bela");
+		k3.crtajSe(g);
+		Pravougaonik pr1 = new Pravougaonik(new Tacka(600, 500), 200, 100, "zelena");
+		pr1.crtajSe(g);
+		Krug k4 = new Krug((int) pr1.dijagonalaPravougaonika().duzina()/2, pr1.centralnaTacka(), l1.getBoja());
+		k4.crtajSe(g);
+		
+		Tacka t1 = new Tacka(100, 200, "crvena");
+		t1.setSelektovan(true);
+		t1.crtajSe(g);
+		
+		Tacka t2 = new Tacka(700, 200);
+		Tacka t3 = new Tacka(100, 50);
+		
+		Linija l1= new Linija(t2, t3, "zelena");
+		l1.setSelektovan(true);
+		l1.crtajSe(g);
+		
+		Kvadrat kv1 = new Kvadrat (new Tacka (100, 500), 100);
+		kv1.setSelektovan(true);
+		//kv1.crtajSe(g);
+	
+		Pravougaonik p1 = new Pravougaonik(new Tacka(600,500), 200, 100, "crvena");
+		p1.setSelektovan(true);
+		p1.crtajSe(g);
+		
+		Krug k4 = new Krug (180, p1.centralnaTacka(), "zuta" );
+		k4.setSelektovan(true);
+		k4.crtajSe(g);
+		
+		kv1.setBoja("zelena");
+		kv1.setSelektovan(false);
+		
+		kv1.setBoja("plava");
+		kv1.setBojaUnutrasnosti("zelena");
+		kv1.popuni(g);
+		kv1.crtajSe(g);
+		
+		k4.setBoja("zelena");
+		k4.setBojaUnutrasnosti("crvena");
+		k4.popuni(g);
+		k4.crtajSe(g);*/
+		
+	
+
+	}
+
+
+/*	public static void main(String[] args) {
+		JFrame prozor = new JFrame();
+		prozor.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		Crtez c = new Crtez();
+		prozor.getContentPane().add(c);
+		prozor.setSize(1024, 768);
+		prozor.setVisible(true);
+	}*/
+}
