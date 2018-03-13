@@ -23,7 +23,7 @@ public class Krug extends PovrsinskiOblik implements Comparable {
 				2 * poluprecnik, 2 * poluprecnik);
 	}
 
-	public boolean sadrzi(int x, int y) {
+	public boolean contains(int x, int y) {
 		Tacka pomoc = new Tacka(x, y);
 		if (pomoc.udaljenost(centar) <= poluprecnik)
 			return true;
@@ -32,7 +32,7 @@ public class Krug extends PovrsinskiOblik implements Comparable {
 	}
 
 	// preklapanje metode crtaj se
-	public void crtajSe(Graphics g) {
+	public void draw(Graphics g) {
 		g.setColor(pronadjiBoju(getBoja()));
 		g.drawOval(centar.getX() - poluprecnik, centar.getY() - poluprecnik,
 				2 * poluprecnik, 2 * poluprecnik);

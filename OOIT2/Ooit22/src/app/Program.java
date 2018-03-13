@@ -1,8 +1,8 @@
 package app;
 
-import geometrija.MainFrame;
-
 import java.awt.EventQueue;
+
+import view.MainFrame;
 
 public class Program {
 

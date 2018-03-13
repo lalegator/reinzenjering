@@ -17,7 +17,7 @@ public class Kvadrat extends PovrsinskiOblik implements Comparable {
 		stranica = istranica;
 	}
 
-	public boolean sadrzi(int x, int y) {
+	public boolean contains(int x, int y) {
 		if (goreLevo.getX() <= x && x <= goreLevo.getX() + stranica
 				&& y >= goreLevo.getY() && y <= goreLevo.getY() + stranica)
 			return true;
@@ -31,7 +31,7 @@ public class Kvadrat extends PovrsinskiOblik implements Comparable {
 				stranica - 1);
 	}
 
-	public void crtajSe(Graphics g) {
+	public void draw(Graphics g) {
 		int ddx = goreLevo.getX() + stranica;
 		int ddy = goreLevo.getY() + stranica;
 		if (stranica > 0) {

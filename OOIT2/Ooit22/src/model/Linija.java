@@ -17,7 +17,7 @@ public class Linija extends Oblik implements Comparable {
 		tKrajnja = itKrajnja;
 	}
 
-	public void crtajSe(Graphics g) {
+	public void draw(Graphics g) {
 		g.setColor(pronadjiBoju(getBoja()));
 		g.drawLine(tPocetna.getX(), tPocetna.getY(), tKrajnja.getX(),
 				tKrajnja.getY());
@@ -52,7 +52,7 @@ public class Linija extends Oblik implements Comparable {
 		return c;
 	}
 
-	public boolean sadrzi(int x, int y) {
+	public boolean contains(int x, int y) {
 		Tacka t = new Tacka(x, y);
 		if (tPocetna.udaljenost(t) + tKrajnja.udaljenost(t) <= tPocetna
 				.udaljenost(tKrajnja) + 0.5)

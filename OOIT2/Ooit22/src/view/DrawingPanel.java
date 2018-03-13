@@ -1,9 +1,9 @@
 package view;
 
-import geometrija.MainFrame;
 import geometrija.Modifikacija;
 import geometrija.Pomeri;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -24,37 +24,37 @@ import model.Tacka;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class View extends JPanel {
-	ArrayList oblici = new ArrayList();
-	MainFrame frmCrtanje;
+@SuppressWarnings("serial")
+public class DrawingPanel extends JPanel {
+	ArrayList<Oblik> oblici = new ArrayList<Oblik>();
+	MainFrame _frmMain;
 	Tacka pocetna;
 	Tacka krajnja;
 	int klik = 1;
 
-	public View(MainFrame tf) {
-		frmCrtanje = tf;
+	public DrawingPanel(MainFrame frmMain) {
+		this.setBackground(Color.PINK);
+		this.setBounds(112, 83, 493, 199);
+		
+		_frmMain = frmMain;
 		addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				/*
-				 * int x = e.getX(); int y = e.getY(); Tacka t = new Tacka (x,
-				 * y); oblici.add(t);
-				 */
-				if (frmCrtanje.tglbtnTacka.isSelected()) {
-					Tacka t = new Tacka(e.getX(), e.getY(), frmCrtanje.selectedColor);
+				if (_frmMain.tglbtnTacka.isSelected()) {
+					Tacka t = new Tacka(e.getX(), e.getY(), _frmMain.selectedColor);
 					oblici.add(t);
 					klik = 1;
-				} else if (frmCrtanje.tglbtnLinija.isSelected()) {
+				} else if (_frmMain.tglbtnLinija.isSelected()) {
 					if (klik == 1) {
 						pocetna = new Tacka(e.getX(), e.getY());
 						klik++;
 					} else {
 						krajnja = new Tacka(e.getX(), e.getY());
 						klik = 1;
-						Linija l = new Linija(pocetna, krajnja, frmCrtanje.selectedColor);
+						Linija l = new Linija(pocetna, krajnja, _frmMain.selectedColor);
 						oblici.add(l);
 					}
-				} else if (frmCrtanje.tglbtnKrug.isSelected()) {
+				} else if (_frmMain.tglbtnKrug.isSelected()) {
 					try {
 						Tacka t = new Tacka(e.getX(), e.getY());
 						String poluprecnik = JOptionPane.showInputDialog(null,
@@ -66,7 +66,7 @@ public class View extends JPanel {
 									JOptionPane.INFORMATION_MESSAGE);
 						} else {
 							Krug k = new Krug(Integer.parseInt(poluprecnik), t,
-									frmCrtanje.selectedColor);
+									_frmMain.selectedColor);
 							oblici.add(k);
 						}
 					} catch (Exception ex) {
@@ -75,7 +75,7 @@ public class View extends JPanel {
 								JOptionPane.INFORMATION_MESSAGE);
 					}
 					klik = 1;
-				} else if (frmCrtanje.tglbtnKvadrat.isSelected()) {
+				} else if (_frmMain.tglbtnKvadrat.isSelected()) {
 					try {
 						Tacka t = new Tacka(e.getX(), e.getY());
 						String stranica = JOptionPane.showInputDialog(null,
@@ -87,7 +87,7 @@ public class View extends JPanel {
 									JOptionPane.INFORMATION_MESSAGE);
 						} else {
 							Kvadrat k = new Kvadrat(t,
-									Integer.parseInt(stranica), frmCrtanje.selectedColor);
+									Integer.parseInt(stranica), _frmMain.selectedColor);
 							oblici.add(k);
 						}
 					} catch (Exception ex) {
@@ -96,7 +96,7 @@ public class View extends JPanel {
 								JOptionPane.INFORMATION_MESSAGE);
 					}
 					klik = 1;
-				} else if (frmCrtanje.tglbtnPravougaonik.isSelected()) {
+				} else if (_frmMain.tglbtnPravougaonik.isSelected()) {
 					try {
 						Tacka t = new Tacka(e.getX(), e.getY());
 						int visina = Integer.parseInt(JOptionPane
@@ -112,7 +112,7 @@ public class View extends JPanel {
 									JOptionPane.INFORMATION_MESSAGE);
 						} else {
 							Pravougaonik p = new Pravougaonik(t, sirina,
-									visina, frmCrtanje.selectedColor);
+									visina, _frmMain.selectedColor);
 							oblici.add(p);
 						}
 					} catch (Exception ex) {
@@ -121,24 +121,24 @@ public class View extends JPanel {
 								JOptionPane.INFORMATION_MESSAGE);
 					}
 					klik = 1;
-				} else if (frmCrtanje.tglbtnSelektuj.isSelected()) {
+				} else if (_frmMain.tglbtnSelektuj.isSelected()) {
 					Iterator itr = oblici.iterator();
 					while (itr.hasNext()) {
 						Oblik obl = (Oblik) itr.next();
 						obl.setSelektovan(false);
-						if (obl.sadrzi(e.getX(), e.getY())) {
+						if (obl.contains(e.getX(), e.getY())) {
 							obl.setSelektovan(true);
 						}
 					}
 				}
 
-				else if (frmCrtanje.tglbtnPopuni.isSelected()) {
+				else if (_frmMain.tglbtnPopuni.isSelected()) {
 					Iterator itr = oblici.iterator();
 					ArrayList kliknuti = new ArrayList();
 					PovrsinskiOblik pomoc = null;
 					while (itr.hasNext()) {
 						Oblik obl = (Oblik) itr.next();
-						if (obl.sadrzi(e.getX(), e.getY())) {
+						if (obl.contains(e.getX(), e.getY())) {
 							if (obl instanceof PovrsinskiOblik) {
 								kliknuti.add(obl);
 								pomoc = (PovrsinskiOblik) obl;
@@ -153,16 +153,12 @@ public class View extends JPanel {
 						}
 					}
 					if (pomoc != null)
-						pomoc.setBojaUnutrasnosti(frmCrtanje.selectedColor);
-					/*
-					 * else JOptionPane.showMessageDialog(null, "Greska"
-					 * ,"Upozorenje", 2);
-					 */
+						pomoc.setBojaUnutrasnosti(_frmMain.selectedColor);
 				}
 			}
 		});
 
-		frmCrtanje.btnModifikacija.addMouseListener(new MouseAdapter() {
+		_frmMain.btnModifikacija.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				Iterator itr = oblici.iterator();
@@ -250,7 +246,7 @@ public class View extends JPanel {
 
 		});
 
-		frmCrtanje.btnPomeriZa.addMouseListener(new MouseAdapter() {
+		_frmMain.btnPomeriZa.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				Pomeri po = new Pomeri();
@@ -285,7 +281,7 @@ public class View extends JPanel {
 			}
 		});
 
-		frmCrtanje.btnObrisi.addMouseListener(new MouseAdapter() {
+		_frmMain.btnObrisi.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				Iterator itr = oblici.iterator();
@@ -297,7 +293,7 @@ public class View extends JPanel {
 			}
 		});
 
-		frmCrtanje.btnPomeriNa.addMouseListener(new MouseAdapter() {
+		_frmMain.btnPomeriNa.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				Pomeri po = new Pomeri();
@@ -338,10 +334,10 @@ public class View extends JPanel {
 	public void paint(Graphics g) {
 		super.paint(g);
 
-		Iterator it = oblici.iterator();
+		Iterator<Oblik> it = oblici.iterator();
 		while (it.hasNext()) {
-			Oblik o = (Oblik) it.next();
-			o.crtajSe(g);
+			Oblik o = it.next();
+			o.draw(g);
 		}
 		repaint();
 		this.grabFocus();

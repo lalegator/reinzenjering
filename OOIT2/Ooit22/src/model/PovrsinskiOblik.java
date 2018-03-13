@@ -15,7 +15,7 @@ public abstract class PovrsinskiOblik extends Oblik {
 
 	public abstract void popuni(Graphics g);
 
-	public abstract boolean sadrzi(int x, int y);
+	public abstract boolean contains(int x, int y);
 
 	public abstract double povrsina();
 

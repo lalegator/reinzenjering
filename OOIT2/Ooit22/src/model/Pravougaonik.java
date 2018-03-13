@@ -15,7 +15,7 @@ public class Pravougaonik extends Kvadrat implements Comparable {
 		setBoja(iboja);
 	}
 
-	public void crtajSe(Graphics g) {
+	public void draw(Graphics g) {
 		int ddx = goreLevo.getX() + stranica;
 		int ddy = goreLevo.getY() + visina;
 		if (stranica > 0) {
@@ -38,7 +38,7 @@ public class Pravougaonik extends Kvadrat implements Comparable {
 				visina - 1);
 	}
 
-	public boolean sadrzi(int x, int y) {
+	public boolean contains(int x, int y) {
 		if (x >= goreLevo.getX() && x <= goreLevo.getX() + stranica
 				&& y >= goreLevo.getY() && y <= goreLevo.getY() + visina)
 			return true;

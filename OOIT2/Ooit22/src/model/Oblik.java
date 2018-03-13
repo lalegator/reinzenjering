@@ -22,9 +22,9 @@ public abstract class Oblik {
 		boja = iboja;
 	}
 
-	public abstract void crtajSe(Graphics g);
+	public abstract void draw(Graphics g);
 
-	public abstract boolean sadrzi(int x, int y);
+	public abstract boolean contains(int x, int y);
 
 	public static Color pronadjiBoju(String boja) {
 		if (boja == null)
