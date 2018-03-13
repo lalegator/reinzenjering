@@ -81,23 +81,23 @@ public class Pomeri extends JDialog {
 						boolean grX = false;
 						boolean grY = false;
 						try {
-							korX=Integer.parseInt(textField.getText());
-						}
-						catch (Exception ex){
+							korX = Integer.parseInt(textField.getText());
+						} catch (Exception ex) {
 							grX = true;
 							textField.setText(null);
 						}
 						try {
-							korY=Integer.parseInt(textField_1.getText());
-						}
-						catch (Exception ex){
+							korY = Integer.parseInt(textField_1.getText());
+						} catch (Exception ex) {
 							grY = true;
 							textField_1.setText(null);
 						}
 						if (!grX && !grY)
 							dispose();
 						else
-							JOptionPane.showMessageDialog(null, "Morate uneti broj.", "Obavestenje", JOptionPane.INFORMATION_MESSAGE);
+							JOptionPane.showMessageDialog(null,
+									"Morate uneti broj.", "Obavestenje",
+									JOptionPane.INFORMATION_MESSAGE);
 					}
 				});
 				okButton.setActionCommand("OK");
