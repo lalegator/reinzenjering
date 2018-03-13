@@ -1,5 +1,9 @@
-package geometrija;
+package view;
 
+import geometrija.Modifikacija;
+import geometrija.Pomeri;
+
+import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -9,40 +13,48 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import model.Krug;
+import model.Kvadrat;
+import model.Linija;
+import model.Oblik;
+import model.PovrsinskiOblik;
+import model.Pravougaonik;
+import model.Tacka;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class Crtez extends JPanel {
-	ArrayList oblici = new ArrayList();
-	Crtanje frmCrtanje;
+@SuppressWarnings("serial")
+public class DrawingPanel extends JPanel {
+	ArrayList<Oblik> oblici = new ArrayList<Oblik>();
+	MainFrame _frmMain;
 	Tacka pocetna;
 	Tacka krajnja;
 	int klik = 1;
 
-	public Crtez(Crtanje tf) {
-		frmCrtanje = tf;
+	public DrawingPanel(MainFrame frmMain) {
+		this.setBackground(Color.PINK);
+		this.setBounds(112, 83, 493, 199);
+		
+		_frmMain = frmMain;
 		addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				/*
-				 * int x = e.getX(); int y = e.getY(); Tacka t = new Tacka (x,
-				 * y); oblici.add(t);
-				 */
-				if (frmCrtanje.tglbtnTacka.isSelected()) {
-					Tacka t = new Tacka(e.getX(), e.getY(), frmCrtanje.boja);
+				if (_frmMain.tglbtnTacka.isSelected()) {
+					Tacka t = new Tacka(e.getX(), e.getY(), _frmMain.selectedColor);
 					oblici.add(t);
 					klik = 1;
-				} else if (frmCrtanje.tglbtnLinija.isSelected()) {
+				} else if (_frmMain.tglbtnLinija.isSelected()) {
 					if (klik == 1) {
 						pocetna = new Tacka(e.getX(), e.getY());
 						klik++;
 					} else {
 						krajnja = new Tacka(e.getX(), e.getY());
 						klik = 1;
-						Linija l = new Linija(pocetna, krajnja, frmCrtanje.boja);
+						Linija l = new Linija(pocetna, krajnja, _frmMain.selectedColor);
 						oblici.add(l);
 					}
-				} else if (frmCrtanje.tglbtnKrug.isSelected()) {
+				} else if (_frmMain.tglbtnKrug.isSelected()) {
 					try {
 						Tacka t = new Tacka(e.getX(), e.getY());
 						String poluprecnik = JOptionPane.showInputDialog(null,
@@ -54,7 +66,7 @@ public class Crtez extends JPanel {
 									JOptionPane.INFORMATION_MESSAGE);
 						} else {
 							Krug k = new Krug(Integer.parseInt(poluprecnik), t,
-									frmCrtanje.boja);
+									_frmMain.selectedColor);
 							oblici.add(k);
 						}
 					} catch (Exception ex) {
@@ -63,7 +75,7 @@ public class Crtez extends JPanel {
 								JOptionPane.INFORMATION_MESSAGE);
 					}
 					klik = 1;
-				} else if (frmCrtanje.tglbtnKvadrat.isSelected()) {
+				} else if (_frmMain.tglbtnKvadrat.isSelected()) {
 					try {
 						Tacka t = new Tacka(e.getX(), e.getY());
 						String stranica = JOptionPane.showInputDialog(null,
@@ -75,7 +87,7 @@ public class Crtez extends JPanel {
 									JOptionPane.INFORMATION_MESSAGE);
 						} else {
 							Kvadrat k = new Kvadrat(t,
-									Integer.parseInt(stranica), frmCrtanje.boja);
+									Integer.parseInt(stranica), _frmMain.selectedColor);
 							oblici.add(k);
 						}
 					} catch (Exception ex) {
@@ -84,7 +96,7 @@ public class Crtez extends JPanel {
 								JOptionPane.INFORMATION_MESSAGE);
 					}
 					klik = 1;
-				} else if (frmCrtanje.tglbtnPravougaonik.isSelected()) {
+				} else if (_frmMain.tglbtnPravougaonik.isSelected()) {
 					try {
 						Tacka t = new Tacka(e.getX(), e.getY());
 						int visina = Integer.parseInt(JOptionPane
@@ -100,7 +112,7 @@ public class Crtez extends JPanel {
 									JOptionPane.INFORMATION_MESSAGE);
 						} else {
 							Pravougaonik p = new Pravougaonik(t, sirina,
-									visina, frmCrtanje.boja);
+									visina, _frmMain.selectedColor);
 							oblici.add(p);
 						}
 					} catch (Exception ex) {
@@ -109,24 +121,24 @@ public class Crtez extends JPanel {
 								JOptionPane.INFORMATION_MESSAGE);
 					}
 					klik = 1;
-				} else if (frmCrtanje.tglbtnSelektuj.isSelected()) {
+				} else if (_frmMain.tglbtnSelektuj.isSelected()) {
 					Iterator itr = oblici.iterator();
 					while (itr.hasNext()) {
 						Oblik obl = (Oblik) itr.next();
 						obl.setSelektovan(false);
-						if (obl.sadrzi(e.getX(), e.getY())) {
+						if (obl.contains(e.getX(), e.getY())) {
 							obl.setSelektovan(true);
 						}
 					}
 				}
 
-				else if (frmCrtanje.tglbtnPopuni.isSelected()) {
+				else if (_frmMain.tglbtnPopuni.isSelected()) {
 					Iterator itr = oblici.iterator();
 					ArrayList kliknuti = new ArrayList();
 					PovrsinskiOblik pomoc = null;
 					while (itr.hasNext()) {
 						Oblik obl = (Oblik) itr.next();
-						if (obl.sadrzi(e.getX(), e.getY())) {
+						if (obl.contains(e.getX(), e.getY())) {
 							if (obl instanceof PovrsinskiOblik) {
 								kliknuti.add(obl);
 								pomoc = (PovrsinskiOblik) obl;
@@ -141,16 +153,12 @@ public class Crtez extends JPanel {
 						}
 					}
 					if (pomoc != null)
-						pomoc.setBojaUnutrasnosti(frmCrtanje.boja);
-					/*
-					 * else JOptionPane.showMessageDialog(null, "Greska"
-					 * ,"Upozorenje", 2);
-					 */
+						pomoc.setBojaUnutrasnosti(_frmMain.selectedColor);
 				}
 			}
 		});
 
-		frmCrtanje.btnModifikacija.addMouseListener(new MouseAdapter() {
+		_frmMain.btnModifikacija.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				Iterator itr = oblici.iterator();
@@ -238,7 +246,7 @@ public class Crtez extends JPanel {
 
 		});
 
-		frmCrtanje.btnPomeriZa.addMouseListener(new MouseAdapter() {
+		_frmMain.btnPomeriZa.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				Pomeri po = new Pomeri();
@@ -273,7 +281,7 @@ public class Crtez extends JPanel {
 			}
 		});
 
-		frmCrtanje.btnObrisi.addMouseListener(new MouseAdapter() {
+		_frmMain.btnObrisi.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				Iterator itr = oblici.iterator();
@@ -285,7 +293,7 @@ public class Crtez extends JPanel {
 			}
 		});
 
-		frmCrtanje.btnPomeriNa.addMouseListener(new MouseAdapter() {
+		_frmMain.btnPomeriNa.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				Pomeri po = new Pomeri();
@@ -326,62 +334,12 @@ public class Crtez extends JPanel {
 	public void paint(Graphics g) {
 		super.paint(g);
 
-		Iterator it = oblici.iterator();
+		Iterator<Oblik> it = oblici.iterator();
 		while (it.hasNext()) {
-			Oblik o = (Oblik) it.next();
-			o.crtajSe(g);
+			Oblik o = it.next();
+			o.draw(g);
 		}
 		repaint();
 		this.grabFocus();
-		/*
-		 * Tacka t1 = new Tacka(50, 100, "plava"); t1.crtajSe(g); Tacka t2 = new
-		 * Tacka(200, 400, "plava"); Linija l1 = new Linija(t1, t2, "crvena");
-		 * l1.crtajSe(g); Kvadrat kv1 = new Kvadrat(t2, 300, "zelena");
-		 * kv1.crtajSe(g); kv1.centralnaTacka().crtajSe(g); Krug k1 = new Krug
-		 * (100,kv1.centralnaTacka(), "plava"); k1.crtajSe(g); Kvadrat kv2 = new
-		 * Kvadrat(new Tacka(500, 150),(int) l1.duzina()/3 ,t1.getBoja());
-		 * kv2.crtajSe(g); kv2.centralnaTacka().crtajSe(g);
-		 * kv2.dijagonalaKvadrata().crtajSe(g); Krug k2 = new Krug((int)
-		 * kv2.dijagonalaKvadrata().duzina()/2, kv2.centralnaTacka(), "zuta");
-		 * k2.crtajSe(g); Krug k3 = new Krug((int) kv2.getStranica()/2,
-		 * kv2.centralnaTacka(), "bela"); k3.crtajSe(g); Pravougaonik pr1 = new
-		 * Pravougaonik(new Tacka(600, 500), 200, 100, "zelena");
-		 * pr1.crtajSe(g); Krug k4 = new Krug((int)
-		 * pr1.dijagonalaPravougaonika().duzina()/2, pr1.centralnaTacka(),
-		 * l1.getBoja()); k4.crtajSe(g);
-		 * 
-		 * Tacka t1 = new Tacka(100, 200, "crvena"); t1.setSelektovan(true);
-		 * t1.crtajSe(g);
-		 * 
-		 * Tacka t2 = new Tacka(700, 200); Tacka t3 = new Tacka(100, 50);
-		 * 
-		 * Linija l1= new Linija(t2, t3, "zelena"); l1.setSelektovan(true);
-		 * l1.crtajSe(g);
-		 * 
-		 * Kvadrat kv1 = new Kvadrat (new Tacka (100, 500), 100);
-		 * kv1.setSelektovan(true); //kv1.crtajSe(g);
-		 * 
-		 * Pravougaonik p1 = new Pravougaonik(new Tacka(600,500), 200, 100,
-		 * "crvena"); p1.setSelektovan(true); p1.crtajSe(g);
-		 * 
-		 * Krug k4 = new Krug (180, p1.centralnaTacka(), "zuta" );
-		 * k4.setSelektovan(true); k4.crtajSe(g);
-		 * 
-		 * kv1.setBoja("zelena"); kv1.setSelektovan(false);
-		 * 
-		 * kv1.setBoja("plava"); kv1.setBojaUnutrasnosti("zelena");
-		 * kv1.popuni(g); kv1.crtajSe(g);
-		 * 
-		 * k4.setBoja("zelena"); k4.setBojaUnutrasnosti("crvena"); k4.popuni(g);
-		 * k4.crtajSe(g);
-		 */
-
 	}
-
-	/*
-	 * public static void main(String[] args) { JFrame prozor = new JFrame();
-	 * prozor.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); Crtez c = new
-	 * Crtez(); prozor.getContentPane().add(c); prozor.setSize(1024, 768);
-	 * prozor.setVisible(true); }
-	 */
 }

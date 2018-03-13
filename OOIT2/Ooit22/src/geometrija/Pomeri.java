@@ -18,10 +18,10 @@ import java.awt.event.ActionEvent;
 public class Pomeri extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField textField;
-	private JTextField textField_1;
-	int korX = -1;
-	int korY = -1;
+	public JTextField textField;
+	public JTextField textField_1;
+	public int korX = -1;
+	public int korY = -1;
 
 	/**
 	 * Launch the application.
@@ -81,23 +81,23 @@ public class Pomeri extends JDialog {
 						boolean grX = false;
 						boolean grY = false;
 						try {
-							korX=Integer.parseInt(textField.getText());
-						}
-						catch (Exception ex){
+							korX = Integer.parseInt(textField.getText());
+						} catch (Exception ex) {
 							grX = true;
 							textField.setText(null);
 						}
 						try {
-							korY=Integer.parseInt(textField_1.getText());
-						}
-						catch (Exception ex){
+							korY = Integer.parseInt(textField_1.getText());
+						} catch (Exception ex) {
 							grY = true;
 							textField_1.setText(null);
 						}
 						if (!grX && !grY)
 							dispose();
 						else
-							JOptionPane.showMessageDialog(null, "Morate uneti broj.", "Obavestenje", JOptionPane.INFORMATION_MESSAGE);
+							JOptionPane.showMessageDialog(null,
+									"Morate uneti broj.", "Obavestenje",
+									JOptionPane.INFORMATION_MESSAGE);
 					}
 				});
 				okButton.setActionCommand("OK");
