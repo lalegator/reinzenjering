@@ -1,6 +1,6 @@
 package view;
 
-import geometrija.Crtanje;
+import geometrija.MainFrame;
 import geometrija.Modifikacija;
 import geometrija.Pomeri;
 
@@ -26,12 +26,12 @@ import java.awt.event.MouseEvent;
 
 public class View extends JPanel {
 	ArrayList oblici = new ArrayList();
-	Crtanje frmCrtanje;
+	MainFrame frmCrtanje;
 	Tacka pocetna;
 	Tacka krajnja;
 	int klik = 1;
 
-	public View(Crtanje tf) {
+	public View(MainFrame tf) {
 		frmCrtanje = tf;
 		addMouseListener(new MouseAdapter() {
 			@Override
@@ -41,7 +41,7 @@ public class View extends JPanel {
 				 * y); oblici.add(t);
 				 */
 				if (frmCrtanje.tglbtnTacka.isSelected()) {
-					Tacka t = new Tacka(e.getX(), e.getY(), frmCrtanje.boja);
+					Tacka t = new Tacka(e.getX(), e.getY(), frmCrtanje.selectedColor);
 					oblici.add(t);
 					klik = 1;
 				} else if (frmCrtanje.tglbtnLinija.isSelected()) {
@@ -51,7 +51,7 @@ public class View extends JPanel {
 					} else {
 						krajnja = new Tacka(e.getX(), e.getY());
 						klik = 1;
-						Linija l = new Linija(pocetna, krajnja, frmCrtanje.boja);
+						Linija l = new Linija(pocetna, krajnja, frmCrtanje.selectedColor);
 						oblici.add(l);
 					}
 				} else if (frmCrtanje.tglbtnKrug.isSelected()) {
@@ -66,7 +66,7 @@ public class View extends JPanel {
 									JOptionPane.INFORMATION_MESSAGE);
 						} else {
 							Krug k = new Krug(Integer.parseInt(poluprecnik), t,
-									frmCrtanje.boja);
+									frmCrtanje.selectedColor);
 							oblici.add(k);
 						}
 					} catch (Exception ex) {
@@ -87,7 +87,7 @@ public class View extends JPanel {
 									JOptionPane.INFORMATION_MESSAGE);
 						} else {
 							Kvadrat k = new Kvadrat(t,
-									Integer.parseInt(stranica), frmCrtanje.boja);
+									Integer.parseInt(stranica), frmCrtanje.selectedColor);
 							oblici.add(k);
 						}
 					} catch (Exception ex) {
@@ -112,7 +112,7 @@ public class View extends JPanel {
 									JOptionPane.INFORMATION_MESSAGE);
 						} else {
 							Pravougaonik p = new Pravougaonik(t, sirina,
-									visina, frmCrtanje.boja);
+									visina, frmCrtanje.selectedColor);
 							oblici.add(p);
 						}
 					} catch (Exception ex) {
@@ -153,7 +153,7 @@ public class View extends JPanel {
 						}
 					}
 					if (pomoc != null)
-						pomoc.setBojaUnutrasnosti(frmCrtanje.boja);
+						pomoc.setBojaUnutrasnosti(frmCrtanje.selectedColor);
 					/*
 					 * else JOptionPane.showMessageDialog(null, "Greska"
 					 * ,"Upozorenje", 2);

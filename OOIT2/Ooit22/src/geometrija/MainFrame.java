@@ -18,12 +18,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class Crtanje {
+public class MainFrame {
 
 	private JFrame frmCrtanje;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private final ButtonGroup buttonGroup_1 = new ButtonGroup();
-	public String boja;
 	public JToggleButton tglbtnTacka = new JToggleButton("TACKA");
 	public JToggleButton tglbtnLinija = new JToggleButton("LINIJA");
 	public JToggleButton tglbtnKrug = new JToggleButton("KRUG");
@@ -35,7 +34,8 @@ public class Crtanje {
 	public JButton btnModifikacija = new JButton("MODIFIKACIJA");
 	public JButton btnPomeriZa = new JButton("POMERI ZA");
 	public JButton btnPomeriNa = new JButton("POMERI NA");
-
+	
+	public String selectedColor;
 	/**
 	 * Launch the application.
 	 */
@@ -43,7 +43,7 @@ public class Crtanje {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Crtanje window = new Crtanje();
+					MainFrame window = new MainFrame();
 					window.frmCrtanje.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -55,7 +55,7 @@ public class Crtanje {
 	/**
 	 * Create the application.
 	 */
-	public Crtanje() {
+	public MainFrame() {
 		initialize();
 	}
 
@@ -73,7 +73,7 @@ public class Crtanje {
 		JToggleButton tglbtnBela = new JToggleButton("BELA");
 		tglbtnBela.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				boja = "bela";
+				selectedColor = "bela";
 			}
 		});
 		buttonGroup_1.add(tglbtnBela);
@@ -83,7 +83,7 @@ public class Crtanje {
 		JToggleButton tglbtnCrna = new JToggleButton("CRNA");
 		tglbtnCrna.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				boja = "crna";
+				selectedColor = "crna";
 			}
 		});
 		buttonGroup_1.add(tglbtnCrna);
@@ -93,7 +93,7 @@ public class Crtanje {
 		JToggleButton tglbtnZelena = new JToggleButton("ZELENA");
 		tglbtnZelena.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				boja = "zelena";
+				selectedColor = "zelena";
 			}
 		});
 		buttonGroup_1.add(tglbtnZelena);
@@ -103,7 +103,7 @@ public class Crtanje {
 		JToggleButton tglbtnZuta = new JToggleButton("ZUTA");
 		tglbtnZuta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				boja = "zuta";
+				selectedColor = "zuta";
 			}
 		});
 		buttonGroup_1.add(tglbtnZuta);
@@ -113,7 +113,7 @@ public class Crtanje {
 		JToggleButton tglbtnPlava = new JToggleButton("PLAVA");
 		tglbtnPlava.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				boja = "plava";
+				selectedColor = "plava";
 			}
 		});
 		buttonGroup_1.add(tglbtnPlava);
@@ -123,7 +123,7 @@ public class Crtanje {
 		JToggleButton tglbtnCrvena = new JToggleButton("CRVENA");
 		tglbtnCrvena.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				boja = "crvena";
+				selectedColor = "crvena";
 			}
 		});
 		buttonGroup_1.add(tglbtnCrvena);
